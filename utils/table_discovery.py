@@ -502,3 +502,40 @@ class TableDiscovery:
     def _is_perm_error(msg: str) -> bool:
         m = msg.upper()
         return ("403" in m) or ("PERMISSION" in m) or ("UNAUTHORIZED" in m) or ("ACCESS DENIED" in m)
+        
+
+
+"""
+# --- QUICK EXAMPLES ----------------------------------------------------------
+from layker.utils.table_discovery import TableDiscovery
+
+# 1) EVERYTHING ON: catalog → schemas → tables → columns(dtypes); print + save
+TableDiscovery.tree(
+    "dq_dev",
+    list_columns=True,
+    construct_tree=True,
+    save_tree=True,                 # True => writes ./tree.txt ; or pass "dbfs:/tmp/foo.txt"
+    include_views=False,
+    exclude_prefixes=["tmp_", "stg_"],
+    exclude_prefix="tama",          # single prefix shorthand
+    spacious=True
+)
+
+# 2) PIPELINE (treat 'source' as pipeline name); qualify bare names via schema
+TableDiscovery.tree(
+    "my_dlt_pipeline",
+    is_pipeline=True,
+    list_columns=True,
+    construct_tree=True,
+    assume_schema="dq_dev.analytics"
+)
+
+# 3) STRUCTURED (no tree): get {table_fqn -> {col: dtype}} for a schema
+data, _ = TableDiscovery.tree(
+    "dq_dev.lmg_sandbox",
+    list_columns=True,
+    construct_tree=False
+)
+print(f"tables: {len(data)}")
+# -----------------------------------------------------------------------------
+"""     
