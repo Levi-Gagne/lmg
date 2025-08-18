@@ -138,6 +138,7 @@ def list_dependencies(wheel_path):
         else:
             print("No METADATA file found in the wheel.")
 
+"""
 # Example usages
 wheel_path = 'path_to_your_wheel_file.whl'  # Replace with your wheel file path
 if validate_wheel(wheel_path):
@@ -152,3 +153,4 @@ folder_to_zip = 'path_to_your_unpacked_wheel_directory'  # Replace with your fol
 zip_file_name = 'path_to_output_zip_file.zip'  # Replace with your desired zip file name
 zip_folder(folder_to_zip, zip_file_name)
 repack_wheel('path_to_directory', 'new_wheel_file.whl')
+"""
